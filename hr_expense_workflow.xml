@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Workflow definition -->
+        <record id="hr_expense.wkf_expenses" model="workflow">
+            <field name="name">hr.wkf.expenses</field>
+            <field name="osv">hr.expense.expense</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <!--草稿-->
+        <record id="hr_expense.act_draft" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">draft</field>
+            <field name="flow_start">True</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'draft'})</field>
+        </record>
+
+        <!--确认-->
+        <record id="hr_expense.act_confirm" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">confirm</field>
+            <field name="kind">function</field>
+            <field name="action">expense_confirm()</field>
+        </record>
+        <!-- 验证 -->
+        <record id="hr_expense.act_accepted" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">accepted</field>
+            <field name="kind">function</field>
+            <field name="action">expense_accept()</field>
+        </record>
+
+        <!--分支1:店长:副总:总经理-->
+        <record id="hr_expense.act_sub_1" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">sub_1</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'subed_1'})</field>
+        </record>
+
+        <!--分支2:经理:总经理-->
+        <record id="hr_expense.act_sub_2" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">sub_2</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'subed_2'})</field>
+        </record>
+
+        <!-- 分支3: 店长:库管:人力经理:总经理 -->
+        <record id="hr_expense.act_sub_3" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">sub_3</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'subed_3'})</field>
+        </record>
+
+        <!-- 部门经理审批-->
+        <record id="hr_expense.act_dept_manager_approve" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">dept_manager_approve</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'dept_manager_approved'})</field>
+        </record>
+
+
+        <!-- 店长审批-->
+        <record id="hr_expense.act_shop_manager_approve" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">shop_manager_approve</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'shop_manager_approved'})</field>
+        </record>
+
+        <!-- 副总审批 -->
+        <record id="hr_expense.act_vice_general_manager_approve" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">vice_general_manager_approve</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'vice_general_manager_approved'})</field>
+        </record>
+
+        <!-- 总经理审批 -->
+        <record id="hr_expense.act_ceo_approve" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">ceo_approve</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'ceo_approved'})</field>
+        </record>
+
+        <!-- 人力资源经理审批-->
+        <record id="hr_expense.act_hr_manager_approve" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">hr_manager_approve</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'hr_manager_approved'})</field>
+        </record>
+
+        <!-- 库管审批 -->
+        <record id="hr_expense.act_stock_manager_approve" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">stock_manager_approve</field>
+            <field name="kind">function</field>
+            <field name="action">write({'state': 'stock_manager_approved'})</field>
+        </record>
+
+
+        <record id="hr_expense.act_refused" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">refused</field>
+            <field name="kind">function</field>
+            <field name="action">expense_canceled()</field>
+        </record>
+
+        <record id="hr_expense.act_done" model="workflow.activity">
+            <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
+            <field name="name">done</field>
+            <field name="kind">function</field>
+            <field name="action">action_receipt_create()</field>
+        </record>
+
+        <!-- 定义迁移 -->
+        <!-- draft-confim -->
+        <record id="hr_expense.t1" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_draft"/>
+            <field name="act_to" ref="hr_expense.act_confirm"/>
+            <field name="signal">confirm</field>
+        </record>
+
+        <!-- confirm-accepted -->
+        <record id="hr_expense.t2" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_confirm"/>
+            <field name="act_to" ref="hr_expense.act_accepted"/>
+            <field name="signal">validate</field>
+        </record>
+
+        <!-- accepted-sub_1-->
+        <record id="hr_expense.t21" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_accepted"/>
+            <field name="act_to" ref="hr_expense.act_sub_1"/>
+            <field name="signal">sub_1</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <!-- accepted-sub_2-->
+        <record id="hr_expense.t22" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_accepted"/>
+            <field name="act_to" ref="hr_expense.act_sub_2"/>
+            <field name="signal">sub_2</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <!-- accepted-sub_3-->
+        <record id="hr_expense.t23" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_accepted"/>
+            <field name="act_to" ref="hr_expense.act_sub_3"/>
+            <field name="signal">sub_2</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+
+        <!-- sub_1 处理 -->
+        <!-- sub_1 -  shop_manager_approve -->
+        <record id="hr_expense.t211" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_sub_1"/>
+            <field name="act_to" ref="hr_expense.act_shop_manager_approve"/>
+            <field name="signal">shop_manager_approve</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <!-- shop_manager_approve -  vice_general_manager_approve -->
+        <record id="hr_expense.t212" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_shop_manager_approve"/>
+            <field name="act_to" ref="hr_expense.act_vice_general_manager_approve"/>
+            <field name="signal">vice_general_manager_approve</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <!-- vice_general_manager_approve - ceo_approve -->
+        <record id="hr_expense.t213" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_vice_general_manager_approve"/>
+            <field name="act_to" ref="hr_expense.act_ceo_approve"/>
+            <field name="signal">ceo_approve</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+        <!-- sub_1 处理完毕 -->
+
+        <!-- sub_2 处理 -->
+        <!-- sub_2 -  accepted - dept_manager_approve -->
+        <record id="hr_expense.t221" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_sub_2"/>
+            <field name="act_to" ref="hr_expense.act_dept_manager_approve"/>
+            <field name="signal">dept_manager_approve</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <!-- sub_2 -  dept_manager_approve - ceo_approve -->
+        <record id="hr_expense.t222" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_dept_manager_approve"/>
+            <field name="act_to" ref="hr_expense.act_ceo_approve"/>
+            <field name="signal">ceo_approve</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+        <!-- sub_2 完毕-->
+
+        <!-- sub_3 处理 -->
+        <!-- sub_3 -  sub_3 - shop_manager_approve -->
+        <record id="hr_expense.t231" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_sub_3"/>
+            <field name="act_to" ref="hr_expense.act_shop_manager_approve"/>
+            <field name="signal">shop_manager_approve</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <!-- sub_3 -  shop_manager_approve - stock_manager_approve -->
+        <record id="hr_expense.t232" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_shop_manager_approve"/>
+            <field name="act_to" ref="hr_expense.act_stock_manager_approve"/>
+            <field name="signal">stock_manager_approve</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+        <!-- sub_3 -  stock_manager_approve - hr_manager_approve -->
+        <record id="hr_expense.t233" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_stock_manager_approve"/>
+            <field name="act_to" ref="hr_expense.act_hr_manager_approve"/>
+            <field name="signal">hr_manager_approve</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+         <!-- sub_3 -  hr_manager_approve - ceo_approve -->
+        <record id="hr_expense.t234" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_hr_manager_approve"/>
+            <field name="act_to" ref="hr_expense.act_ceo_approve"/>
+            <field name="signal">ceo_approve</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+        <!-- sub_3 完毕-->
+
+        <!--审批完成-->
+        <record id="hr_expense.t3" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_ceo_approve"/>
+            <field name="act_to" ref="hr_expense.act_done"/>
+            <field name="signal">done</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+
+        <!-- refuse 处理 -->
+        <record id="hr_expense.trefuse_1" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_confirm"/>
+            <field name="act_to" ref="hr_expense.act_refused"/>
+            <field name="signal">refuse</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <record id="hr_expense.trefuse_2" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_accepted"/>
+            <field name="act_to" ref="hr_expense.act_refused"/>
+            <field name="signal">refuse</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <record id="hr_expense.trefuse_3" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_shop_manager_approve"/>
+            <field name="act_to" ref="hr_expense.act_refused"/>
+            <field name="signal">refuse</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <record id="hr_expense.trefuse_4" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_vice_general_manager_approve"/>
+            <field name="act_to" ref="hr_expense.act_refused"/>
+            <field name="signal">refuse</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <record id="hr_expense.trefuse_5" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_dept_manager_approve"/>
+            <field name="act_to" ref="hr_expense.act_refused"/>
+            <field name="signal">refuse</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <record id="hr_expense.trefuse_6" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_stock_manager_approve"/>
+            <field name="act_to" ref="hr_expense.act_refused"/>
+            <field name="signal">refuse</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <record id="hr_expense.trefuse_7" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_hr_manager_approve"/>
+            <field name="act_to" ref="hr_expense.act_refused"/>
+            <field name="signal">refuse</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <record id="hr_expense.trefuse_8" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_ceo_approve"/>
+            <field name="act_to" ref="hr_expense.act_refused"/>
+            <field name="signal">refuse</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <!-- 设为草稿 -->
+        <record id="hr_expense.t30" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_refused"/>
+            <field name="act_to" ref="hr_expense.act_draft"/>
+            <field name="signal">draft</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+
+        <record id="hr_expense.t7" model="workflow.transition">
+            <field name="act_from" ref="hr_expense.act_confirm"/>
+            <field name="act_to" ref="hr_expense.act_draft"/>
+            <field name="signal">draft</field>
+            <field name="group_id" ref="base.group_hr_user"/>
+        </record>
+    </data>
+</openerp>
