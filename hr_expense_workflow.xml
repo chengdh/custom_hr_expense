@@ -32,7 +32,7 @@
             <field name="action">expense_accept()</field>
         </record>
 
-        <!--分支1:店长:副总:总经理-->
+        <!--分支1 材料费:店长:副总:总经理-->
         <record id="hr_expense.act_sub_1" model="workflow.activity">
             <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
             <field name="name">sub_1</field>
@@ -40,7 +40,7 @@
             <field name="action">write({'state': 'subed_1'})</field>
         </record>
 
-        <!--分支2:经理:总经理-->
+        <!--分支2 事物费:经理:总经理-->
         <record id="hr_expense.act_sub_2" model="workflow.activity">
             <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
             <field name="name">sub_2</field>
@@ -48,7 +48,7 @@
             <field name="action">write({'state': 'subed_2'})</field>
         </record>
 
-        <!-- 分支3: 店长:库管:人力经理:总经理 -->
+        <!-- 分支3 工装费: 店长:库管:人力经理:总经理 -->
         <record id="hr_expense.act_sub_3" model="workflow.activity">
             <field name="wkf_id" ref="hr_expense.wkf_expenses"/>
             <field name="name">sub_3</field>
@@ -155,7 +155,7 @@
         <record id="hr_expense.t23" model="workflow.transition">
             <field name="act_from" ref="hr_expense.act_accepted"/>
             <field name="act_to" ref="hr_expense.act_sub_3"/>
-            <field name="signal">sub_2</field>
+            <field name="signal">sub_3</field>
             <field name="group_id" ref="base.group_hr_user"/>
         </record>
 

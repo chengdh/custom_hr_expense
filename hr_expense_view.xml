@@ -10,8 +10,8 @@
           <header>
             <button name="confirm" states="draft" string="提交" type="workflow" class="oe_highlight"/>
             <button name="validate" states="confirm" string="确认" type="workflow" class="oe_highlight"/>
-            <button name="sub_1" states="accepted" string="事务费" type="workflow" class="oe_highlight"/>
-            <button name="sub_2" states="accepted" string="材料费" type="workflow" class="oe_highlight"/>
+            <button name="sub_1" states="accepted" string="材料费" type="workflow" class="oe_highlight"/>
+            <button name="sub_2" states="accepted" string="事务费" type="workflow" class="oe_highlight"/>
             <button name="sub_3" states="accepted" string="工装费" type="workflow" class="oe_highlight"/>
             <button name="shop_manager_approve" states="subed_1,subed_3" string="店长审批" type="workflow" groups="base.group_shop_manager" class="oe_highlight"/>
             <button name="dept_manager_approve" states="subed_2" string="经理审批" type="workflow" groups="base.group_dept_manager" class="oe_highlight"/>

@@ -84,7 +84,7 @@ class hr_expense(osv.osv):
       signal = "hr_manager_approve"
 
     if group_stock_manager in matched_groups:
-      state = ["dept_manager_approved"]
+      state = ["shop_manager_approved"]
       signal = "stock_manager_approve"
 
 
@@ -125,7 +125,7 @@ class hr_expense(osv.osv):
       "next_workflow_signal" : fields.function(_next_workflow_signal,string="根据当前用户计算下一个workflow signal"),
       }
 
-  def get_waiting_audit_expenses(self,cr,uid,domain = None,context=None):
+  def get_waiting_audit_expenses(self,cr,uid,context=None):
     #FIXME 为简单处理,此处为硬编码 
     #1 根据uid获取用户所属group_id
     #2 根据group_id找出对应的工作流state
@@ -134,7 +134,9 @@ class hr_expense(osv.osv):
     if not where_args : return []
 
     _logger.debug("[state,signal] = " + repr(where_args));
-    ids = self.search(cr,uid,[("state","in",where_args["state"])],context=context)
+    _logger.debug("context = " + repr(context));
+    ids = self.search(cr,uid,[("state","in",where_args['state'])])
+    _logger.debug("ids = " + repr(ids));
     if not ids: return []
     expenses = self.read(cr,uid,ids,context=context)
     _logger.debug("return expenses =  " + repr(expenses));
