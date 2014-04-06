@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-      <!--导出到excel
-      <report id="report_hr_payslip_run_excel" model="hr.payslip.run"
-        name="hr.payroll.payslip.run.xls" file="custom_hr_payroll/report/hr_payslip_run.mako"
-        usage="default" string="导出到excel" report_type='mako2html' header='0' />
-      -->
+      <report id="hr_expense.hr_expenses" 
+        model="hr.expense.expense"
+        name="hr.expense.new" 
+        file="custom_hr_expense/report/hr_expense.mako"
+        usage="default" 
+        string="打印" 
+        report_type='mako2html' 
+        header='0' />
     </data>
 </openerp>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!-- Expense-related subtypes for messaging / Chatter -->
+    <record id="mt_expense_approved" model="mail.message.subtype">
+      <field name="name">Approved</field>
+      <field name="res_model">hr.expense.expense</field>
+      <field name="description">Expense Approved</field>
+    </record>
+    <record id="mt_expense_refused" model="mail.message.subtype">
+      <field name="name">Refused</field>
+      <field name="res_model">hr.expense.expense</field>
+      <field name="description">Expense is refused</field>
+    </record>
+    <record id="mt_expense_confirmed" model="mail.message.subtype">
+      <field name="name">To Approve</field>
+      <field name="res_model">hr.expense.expense</field>
+      <field name="description">Expense is confirmed</field>
+    </record>
+    <record id="mt_expense_dept_manager_approved" model="mail.message.subtype">
+      <field name="name">Dept Manager Approve</field>
+      <field name="res_model">hr.expense.expense</field>
+      <field name="description">Dept Manager Approved</field>
+    </record>
+    <record id="mt_expense_shop_manager_approved" model="mail.message.subtype">
+      <field name="name">Shop Manager Approve</field>
+      <field name="res_model">hr.expense.expense</field>
+      <field name="description">Shop Manager Approved</field>
+    </record>
+    <record id="mt_expense_stock_manager_approved" model="mail.message.subtype">
+      <field name="name">Stock Manager Approve</field>
+      <field name="res_model">hr.expense.expense</field>
+      <field name="description">Stok Manager Approved</field>
+    </record>
+
+    <record id="mt_expense_hr_manager_approved" model="mail.message.subtype">
+      <field name="name">Hr Manager Approve</field>
+      <field name="res_model">hr.expense.expense</field>
+      <field name="description">Hr Manager Approved</field>
+    </record>
+
+    <record id="mt_expense_vice_general_manager_approved" model="mail.message.subtype">
+      <field name="name">Vice General Manager Approve</field>
+      <field name="res_model">hr.expense.expense</field>
+      <field name="description">Vice General Manager Approved</field>
+    </record>
+
+    <record id="mt_expense_ceo_approved" model="mail.message.subtype">
+      <field name="name">CEO Approve</field>
+      <field name="res_model">hr.expense.expense</field>
+      <field name="description">CEO Approved</field>
+    </record>
+  </data>
+</openerp>

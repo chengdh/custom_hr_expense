@@ -3,6 +3,7 @@
 from openerp.osv import fields, osv
 import math
 from datetime import datetime
+from openerp.tools.translate import _
 import openerp.tools as tools
 import logging
 
@@ -15,6 +16,21 @@ class hr_expense(osv.osv):
   _name = "hr.expense.expense"
   _inherit = 'hr.expense.expense'
   _description = "hr expense custom"
+
+  _track = {
+    'state': {
+        'custom_hr_expense.mt_expense_approved': lambda self, cr, uid, obj, ctx=None: obj['state'] == 'accepted',
+        'custom_hr_expense.mt_expense_refused': lambda self, cr, uid, obj, ctx=None: obj['state'] == 'cancelled',
+        'custom_hr_expense.mt_expense_confirmed': lambda self, cr, uid, obj, ctx=None: obj['state'] == 'confirm',
+        'custom_hr_expense.mt_expense_dept_manager_approved': lambda self, cr, uid, obj, ctx=None: obj['state'] == 'dept_manager_approved',
+        'custom_hr_expense.mt_expense_shop_manager_approved': lambda self, cr, uid, obj, ctx=None: obj['state'] == 'shop_manager_approved',
+        'custom_hr_expense.mt_expense_vice_general_manager_approved': lambda self, cr, uid, obj, ctx=None: obj['state'] == 'vice_general_manager_approved',
+        'custom_hr_expense.mt_expense_ceo_approved': lambda self, cr, uid, obj, ctx=None: obj['state'] == 'ceo_approved',
+        'custom_hr_expense.mt_expense_hr_manager_approved': lambda self, cr, uid, obj, ctx=None: obj['state'] == 'hr_manager_approved',
+        'custom_hr_expense.mt_expense_stock_manager_approved': lambda self, cr, uid, obj, ctx=None: obj['state'] == 'stock_manager_approved',
+      },
+    }
+
 
   def _get_where_args_with_workflow(self,cr,uid):
     '''
@@ -86,21 +102,21 @@ class hr_expense(osv.osv):
 
   _columns = {
       'state': fields.selection([
-        ('draft', 'New'),                                                           #草稿
-        ('cancelled', 'Refused'),                                                   #已驳回
-        ('confirm', 'confirmed'),                                                   #已确认
-        ('accepted', 'validated'),                                                  #部门经理已审批
-        ('subed_1', 'subflow 1'),                                                  #部门经理已审批
-        ('subed_2', 'subflow 2'),                                                  #部门经理已审批
-        ('subed_3', 'subflow 3'),                                                  #部门经理已审批
-        ('shop_manager_approved', 'Shop Manager Approved'),
-        ('dept_manager_approved', 'Department Manager Approved'),
-        ('vice_general_manager_approved', 'Vice Manager Approved'),
-        ('stock_manager_approved', 'Stock Manager Approved'),
-        ('hr_manager_approved', 'Hr Manager Approved'),
-        ('ceo_approved', 'CEO Approved'),
-        ('done','Waiting Payment'),
-        ('paid', 'Paid'),
+        ('draft', 'draft'),                                                           #草稿
+        ('cancelled', 'refused'),                                                   #已驳回
+        ('confirm',  'confirmed'),                                                   #已确认
+        ('accepted',  'accepted'),                                                  #部门经理已审批
+        ('subed_1',  'subflow 1'),                                                  #部门经理已审批
+        ('subed_2',  'subflow 2'),                                                  #部门经理已审批
+        ('subed_3',  'subflow 3'),                                                  #部门经理已审批
+        ('shop_manager_approved',  'Shop manager approved'),
+        ('dept_manager_approved',  'Dept manager approved'),
+        ('vice_general_manager_approved',  'Vice general manager approved'),
+        ('stock_manager_approved',  'Stock manager approved'),
+        ('hr_manager_approved',  'Hr manager approved'),
+        ('ceo_approved',  'CEO approved'),
+        ('done','waitting payment'),
+        ('paid','paid'),
         ],
         'Status', readonly=True, track_visibility='onchange',
         help='When the expense request is created the status is \'Draft\'.\n It is confirmed by the user and request is sent to admin, the status is \'Waiting Confirmation\'.\

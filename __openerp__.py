@@ -12,7 +12,9 @@
     'data': [
       "hr_expense_view.xml",
       "hr_expense_workflow.xml",
-      "security/hr_expense_secure.xml"
+      "hr_expense_data.xml",
+      "security/hr_expense_secure.xml",
+      "report.xml",
       ],
     'demo_xml': [],
     'installable': True,

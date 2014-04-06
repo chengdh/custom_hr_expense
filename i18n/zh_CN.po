@@ -1,0 +1,262 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* custom_hr_expense
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-04-04 16:48+0000\n"
+"PO-Revision-Date: 2014-04-04 16:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "副总审批"
+msgstr "副总审批"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "设为草稿"
+msgstr "设为草稿"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,description:custom_hr_expense.mt_expense_vice_general_manager_approved
+msgid "Vice General Manager Approved"
+msgstr "副总已审"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "工装费"
+msgstr "工装费"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,name:custom_hr_expense.mt_expense_ceo_approved
+msgid "CEO Approve"
+msgstr "总经理审批"
+
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,name:custom_hr_expense.mt_expense_vice_general_manager_approved
+msgid "Vice General Manager Approve"
+msgstr "副总审批"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "Shop manager approved"
+msgstr "店长已审"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,description:custom_hr_expense.mt_expense_confirmed
+msgid "Expense is confirmed"
+msgstr "报销单已确认"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "人力经理审批"
+msgstr "人力经理审批"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,description:custom_hr_expense.mt_expense_shop_manager_approved
+msgid "Shop Manager Approved"
+msgstr "店长已审"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "Dept manager approved"
+msgstr "部门经理已审"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,description:custom_hr_expense.mt_expense_refused
+msgid "Expense is refused"
+msgstr "报销单已驳回"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "Hr manager approved"
+msgstr "人事经理已审"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "accepted"
+msgstr "已验证"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,name:custom_hr_expense.mt_expense_dept_manager_approved
+msgid "Dept Manager Approve"
+msgstr "部门经理审批"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "Vice general manager approved"
+msgstr "副总已审"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,name:custom_hr_expense.mt_expense_hr_manager_approved
+msgid "Hr Manager Approve"
+msgstr "人事经理审批"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "总经理审批"
+msgstr "总经理审批"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,name:custom_hr_expense.mt_expense_refused
+msgid "Refused"
+msgstr "已拒绝"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "draft"
+msgstr "草稿"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,description:custom_hr_expense.mt_expense_stock_manager_approved
+msgid "Stok Manager Approved"
+msgstr "库管已审"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "驳回"
+msgstr "驳回"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "提交"
+msgstr "提交"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,name:custom_hr_expense.mt_expense_approved
+msgid "Approved"
+msgstr "已审批"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,description:custom_hr_expense.mt_expense_hr_manager_approved
+msgid "Hr Manager Approved"
+msgstr "人事经理已审"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "CEO approved"
+msgstr "总经理已审"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "subflow 3"
+msgstr "工装费"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,name:custom_hr_expense.mt_expense_shop_manager_approved
+msgid "Shop Manager Approve"
+msgstr "店长审批"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "生成财务凭证"
+msgstr "生成财务凭证"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "confirmed"
+msgstr "已确认"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "paid"
+msgstr "已付款"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "refused"
+msgstr "已驳回"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "库管审批"
+msgstr "库管审批"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "waitting payment"
+msgstr "等待支付"
+
+#. module: custom_hr_expense
+#: model:ir.model,name:custom_hr_expense.model_hr_expense_expense
+msgid "Expense"
+msgstr "费用"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,description:custom_hr_expense.mt_expense_dept_manager_approved
+msgid "Dept Manager Approved"
+msgstr "部门经理已审"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,name:custom_hr_expense.mt_expense_stock_manager_approved
+msgid "Stock Manager Approve"
+msgstr "库管审批"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "店长审批"
+msgstr "店长审批"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,description:custom_hr_expense.mt_expense_ceo_approved
+msgid "CEO Approved"
+msgstr "总经理已审"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "subflow 2"
+msgstr "事务费"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "subflow 1"
+msgstr "材料费"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,description:custom_hr_expense.mt_expense_approved
+msgid "Expense Approved"
+msgstr "报销单已验证"
+
+#. module: custom_hr_expense
+#: selection:hr.expense.expense,state:0
+msgid "Stock manager approved"
+msgstr "库管已审"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "完成"
+msgstr "完成"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "材料费"
+msgstr "材料费"
+
+#. module: custom_hr_expense
+#: model:mail.message.subtype,name:custom_hr_expense.mt_expense_confirmed
+msgid "To Approve"
+msgstr "待审批"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "经理审批"
+msgstr "经理审批"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "确认"
+msgstr "确认"
+
+#. module: custom_hr_expense
+#: view:hr.expense.expense:0
+msgid "事务费"
+msgstr "事务费"
