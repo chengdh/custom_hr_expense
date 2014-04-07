@@ -44,17 +44,17 @@
     <tr>
       <td colspan="4" style="width : 190mm;border : none;">
       经 办 人: ${exp.user_id.name} &nbsp;&nbsp;
-      店    长: ${exp.user_id.name} &nbsp;&nbsp;
-      部门经理: ${exp.user_id.name} &nbsp;&nbsp;
+      店    长: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      部门经理: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </td>
     </tr>
 
     <tr>
       <td colspan="4" style="border : none;">
-      总 会 计: ${exp.user_id.name} &nbsp;&nbsp;
-      现金出纳: ${exp.user_id.name} &nbsp;&nbsp;
-      副总经理: ${exp.user_id.name} &nbsp;&nbsp;
-      总 经 理: ${exp.user_id.name} &nbsp;&nbsp;
+      总 会 计: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      现金出纳: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      副总经理: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      总 经 理: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </td>
     </tr>
 </table>
