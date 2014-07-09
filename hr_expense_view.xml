@@ -28,5 +28,15 @@
         </header>
       </field>
     </record>
+
+    <!--定义审批相关菜单-->
+    <!-- Top menu item -->
+    <menuitem name="审批" id="menu_audit_list" sequence="0"/>
+    <menuitem id="menu_bills" name="待审批票据" parent="menu_audit_list" sequence="2"/>
+    <menuitem id="menu_expens" name="费用报销单" action="hr_expense.expense_all" parent="menu_bills" sequence="3"/>
+    <menuitem id="menu_purchase" name="采购单" action="purchase.purchase_form_action" parent="menu_bills" sequence="4"/>
+    <menuitem id="menu_vendor_voucher" name="供应商付款单" action='account_voucher.action_vendor_payment' parent="menu_bills" sequence="5"/>
+ 
+
   </data>
 </openerp>
