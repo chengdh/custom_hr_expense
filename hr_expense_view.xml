@@ -16,12 +16,12 @@
             <button name="shop_manager_approve" states="subed_1,subed_3" string="店长审批" type="workflow" groups="base.group_shop_manager" class="oe_highlight"/>
             <button name="dept_manager_approve" states="subed_2" string="经理审批" type="workflow" groups="base.group_dept_manager" class="oe_highlight"/>
             <button name="vice_general_manager_approve" states="shop_manager_approved" string="副总审批" type="workflow" groups="base.group_vice_general_manager" class="oe_highlight"/>
-            <button name="ceo_approve" states="vice_general_manager_approved,dept_manager_approved,hr_manager_approved" string="总经理审批" type="workflow" groups="base.group_ceo" class="oe_highlight"/>
+            <button name="ceo_approve" states="vice_general_manager_approved,dept_manager_approved" string="总经理审批" type="workflow" groups="base.group_ceo" class="oe_highlight"/>
             <button name="stock_manager_approve" states="shop_manager_approved" string="库管审批" type="workflow" groups="stock.group_stock_manager" class="oe_highlight"/>
             <button name="hr_manager_approve" states="stock_manager_approved" string="人力经理审批" type="workflow" groups="base.group_hr_manager" class="oe_highlight"/>
             <button name="refuse" states="confirm,accepted,subed_1,subed_2,subed_3,shop_manager_approved,dept_manager_approved,vice_general_manager_approved,stock_manager_approved,hr_manager_approved" string="驳回" type="workflow" groups="base.group_hr_user" />
             <button name="draft" states="confirm,cancelled" string="设为草稿" type="workflow" groups="base.group_hr_user" />
-            <button name="done" states="ceo_approved" string="完成" type="workflow" groups="account.group_account_invoice" class="oe_highlight"/>
+            <button name="done" states="ceo_approved,hr_manager_approved" string="完成" type="workflow" groups="account.group_account_invoice" class="oe_highlight"/>
             <button name="action_view_receipt" states="done" string="生成财务凭证" type="object" groups="account.group_account_invoice"/>
             <field name="state" widget="statusbar" statusbar_visible="draft,confirm,accepted,shop_manager_approved,dept_manager_approved,vice_general_manager_approved,stock_manager_approved,hr_manager_approved,done,paid" statusbar_colors='{"confirm":"blue","cancelled":"red"}'/>
           </header>
@@ -36,7 +36,5 @@
     <menuitem id="menu_expens" name="费用报销单" action="hr_expense.expense_all" parent="menu_bills" sequence="3"/>
     <menuitem id="menu_purchase" name="采购单" action="purchase.purchase_form_action" parent="menu_bills" sequence="4"/>
     <menuitem id="menu_vendor_voucher" name="供应商付款单" action='account_voucher.action_vendor_payment' parent="menu_bills" sequence="5"/>
- 
-
   </data>
 </openerp>
