@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <openerp>
     <data>
+      <!--
         <record id="hr_expense.property_rule_expense_manager" model="ir.rule">
             <field name="name">Manager Expense</field>
             <field model="ir.model" name="model_id" ref="hr_expense.model_hr_expense_expense"/>
@@ -11,17 +12,26 @@
               (4,ref('base.group_vice_general_manager')),(4,ref('base.group_ceo')),
               (4,ref('stock.group_stock_manager')),(4,ref('base.group_account_manager'))]"/>
         </record>
+        -->
         <record id="property_rule_department_expense_manager" model="ir.rule">
             <field name="name">Manager Expense</field>
             <field model="ir.model" name="model_id" ref="hr_expense.model_hr_expense_expense"/>
-            <!--经理只能看到自己部门报销的单据-->
+            <!--店长/经理只能看到自己部门报销的单据-->
             <field name="domain_force">[('department_id.manager_id.user_id','=',user.id)]</field>
             <field name="groups" 
-              eval="[(4,ref('base.group_hr_manager')), (4,ref('base.group_hr_user')),
-              (4,ref('base.group_dept_manager')),(4,ref('base.group_shop_manager')),
-              (4,ref('base.group_vice_general_manager')),(4,ref('base.group_ceo')),
-              (4,ref('stock.group_stock_manager')),(4,ref('base.group_account_manager'))]"/>
+              eval="[(4,ref('base.group_hr_manager')),
+              (4,ref('base.group_hr_user')),
+              (4,ref('base.group_dept_manager')),
+              (4,ref('base.group_shop_manager')),
+              (4,ref('stock.group_stock_manager'))]"/>
         </record>
 
+        <!--副总可看到自己管辖部门的数据-->
+        <record id="property_rule_expense_vice_general_manager" model="ir.rule">
+            <field name="name">Vice General Manager Expense</field>
+            <field model="ir.model" name="model_id" ref="hr_expense.model_hr_expense_expense"/>
+            <field name="domain_force">[('department_id.manager_id.parent_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('base.group_vice_general_manager'))]"/>
+        </record>
     </data>
 </openerp>
