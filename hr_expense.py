@@ -63,13 +63,18 @@ class hr_expense(osv.osv):
     matched_groups = list(set(groups).intersection(set(list_b)))
     if not matched_groups: return None
 
+    state = "__not_use__"
+    signal = "__not_use__"
+
     if group_ceo in matched_groups:
-      state = ["dept_manager_approved","vice_general_manager_approved","hr_manager_approved"]
+      state = ["dept_manager_approved","vice_general_manager_approved"]
       signal = "ceo_approve"
 
     if group_general_manager in matched_groups:
       state = ["shop_manager_approved"]
       signal = "vice_general_manager_approve"
+
+    '''
 
     if group_shop_manager in matched_groups:
       state = ["subed_1","subed_3"]
@@ -86,7 +91,7 @@ class hr_expense(osv.osv):
     if group_stock_manager in matched_groups:
       state = ["shop_manager_approved"]
       signal = "stock_manager_approve"
-
+    '''
 
     return {"state" : state,"signal" : signal}
 
