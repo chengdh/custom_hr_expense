@@ -14,7 +14,7 @@
             <button name="sub_2" states="accepted" string="事务费" type="workflow" class="oe_highlight"/>
             <button name="sub_3" states="accepted" string="工装费" type="workflow" class="oe_highlight"/>
             <button name="shop_manager_approve" states="subed_1,subed_3" string="店长审批" type="workflow" groups="base.group_shop_manager" class="oe_highlight"/>
-            <button name="dept_manager_approve" states="subed_2" string="经理审批" type="workflow" groups="base.group_dept_manager" class="oe_highlight"/>
+            <button name="dept_manager_approve" states="subed_2" string="经理审批" type="workflow" groups="base.group_dept_manager,base.group_vice_general_manager" class="oe_highlight"/>
             <button name="vice_general_manager_approve" states="shop_manager_approved" string="副总审批" type="workflow" groups="base.group_vice_general_manager" class="oe_highlight"/>
             <button name="ceo_approve" states="vice_general_manager_approved,dept_manager_approved" string="总经理审批" type="workflow" groups="base.group_ceo" class="oe_highlight"/>
             <button name="stock_manager_approve" states="shop_manager_approved" string="库管审批" type="workflow" groups="stock.group_stock_manager" class="oe_highlight"/>
