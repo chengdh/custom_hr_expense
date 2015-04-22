@@ -226,14 +226,11 @@
         <!-- sub_3 完毕-->
         <!--审批完成-->
 
-        <!--
         <record id="hr_expense.t3" model="workflow.transition">
             <field name="act_from" ref="hr_expense.act_ceo_approve"/>
             <field name="act_to" ref="hr_expense.act_done"/>
             <field name="signal">done</field>
-            <field name="group_id" ref="base.group_hr_user"/>
         </record>
-        -->
 
 
         <!-- refuse 处理 -->

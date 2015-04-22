@@ -1,0 +1,10 @@
+id,context,model_id,user_id/id,name,domain,is_default
+custom_security.expense_ceo_filter,{},hr.expense.expense,base.user_root,总经理待审批费用单,"[('state','in',['dept_manager_approved','vice_general_manager_approved','hr_manager_approved'])]",1
+custom_security.expense_vice_general_manager_filter,{},hr.expense.expense,base.user_root,副总经理待审批费用单,"[('state','in',['shop_manager_approved'])]",1
+custom_security.expense_shop_manager_filter,{},hr.expense.expense,base.user_root,店长待审批费用单,"[('state','in',['subed_1','subed_3'])]",1
+custom_security.expense_dept_manager_filter,{},hr.expense.expense,base.user_root,部门经理待审批费用单,"[('state','in',['subed_2'])]",1
+custom_security.expense_hr_manager_filter,{},hr.expense.expense,base.user_root,人事经理待审批费用单,"[('state','in',['stock_manager_approved'])]",1
+custom_security.expense_stock_manager_filter,{},hr.expense.expense,base.user_root,库管待审批费用单,"[('state','in',['shop_manager_approved'])]",1
+custom_security.expense_account_manager_filter,{},hr.expense.expense,base.user_root,财务经理待审批费用单,"[('state','in',['ceo_approved','hr_manager_approved'])]",1
+custom_security.expense_account_invoice_filter,{},hr.expense.expense,base.user_root,出纳待付款费用单,"[('state','in',['done'])]",1
+

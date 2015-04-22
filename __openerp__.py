@@ -15,6 +15,7 @@
       "hr_expense_data.xml",
       "security/hr_expense_secure.xml",
       "security/ir_rules.xml",
+      "security/ir.filters.csv",
       "report.xml",
       ],
     'demo_xml': [],
