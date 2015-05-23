@@ -144,3 +144,21 @@ class hr_expense(osv.osv):
     expenses = self.read(cr,uid,ids,context=context)
     _logger.debug("return expenses =  " + repr(expenses));
     return expenses
+
+class account_move_line(osv.osv):
+    _inherit = "account.move.line"
+
+    def reconcile(self, cr, uid, ids, type='auto', writeoff_acc_id=False, writeoff_period_id=False, writeoff_journal_id=False, context=None):
+        res = super(account_move_line, self).reconcile(cr, uid, ids, type=type, writeoff_acc_id=writeoff_acc_id, writeoff_period_id=writeoff_period_id, writeoff_journal_id=writeoff_journal_id, context=context)
+        #when making a full reconciliation of account move lines 'ids', we may need to recompute the state of some hr.expense
+        account_move_ids = [aml.move_id.id for aml in self.browse(cr, uid, ids, context=context)]
+        expense_obj = self.pool.get('hr.expense.expense')
+        currency_obj = self.pool.get('res.currency')
+        if account_move_ids:
+            expense_ids = expense_obj.search(cr, uid, [('account_move_id', 'in', account_move_ids)], context=context)
+            for expense in expense_obj.browse(cr, uid, expense_ids, context=context):
+                if expense.state == 'done':
+                    expense_obj.write(cr, uid, [expense.id], {'state': 'paid'}, context=context)
+        return res
+
+
