@@ -24,7 +24,7 @@
             <button name="done" states="ceo_approved,hr_manager_approved" string="财务经理审批" type="workflow" groups="account.group_account_manager" class="oe_highlight"/>
             <button name="action_view_receipt" states="done" string="付款过帐" type="object" groups="account.group_account_teller"/>
             <field name="state" widget="statusbar" statusbar_visible="draft,confirm,accepted,shop_manager_approved,dept_manager_approved,vice_general_manager_approved,stock_manager_approved,hr_manager_approved,done,paid" statusbar_colors='{"confirm":"blue","cancelled":"red"}'/>
-          </header>
+
         </header>
       </field>
     </record>
